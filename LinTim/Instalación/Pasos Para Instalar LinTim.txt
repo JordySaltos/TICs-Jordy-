@@ -1,0 +1,94 @@
+################Instalacion de WSL para distribuciòn Debian###################
+Para instalar Debian en Windows Subsystem for Linux (WSL), sigue estos pasos:
+
+Habilita WSL:
+
+Abre PowerShell como administrador.
+
+-Ejecuta el siguiente comando para habilitar la característica de WSL:
+
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+-Habilita la característica de Plataforma de Máquina Virtual:
+
+Asegúrate de habilitar esta característica para poder ejecutar distribuciones de Linux en WSL. Ejecuta el siguiente comando en PowerShell:
+
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+-Descarga e instala el paquete de actualización del kernel de WSL 2:
+
+Ve a la página de descargas de Microsoft y descarga el paquete de actualización del kernel de WSL 2 para Windows. Instálalo.
+Establece WSL 2 como versión predeterminada en el siguiente enlace:
+
+https://learn.microsoft.com/es-es/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
+
+-Abre PowerShell y ejecuta el siguiente comando para establecer WSL 2 como la versión predeterminada:
+
+wsl --set-default-version 2
+
+-Descarga e instala Debian desde Microsoft Store:
+
+Abre Microsoft Store y busca "Debian". Selecciona la versión de Debian que prefieras y haz clic en "Instalar".
+Configura Debian:
+
+Una vez que la instalación esté completa, se te pedirá que configures un nombre de usuario y una contraseña.
+
+Ahora actualiza los repositorios:
+
+################Instalacion LinTim###################
+
+Abre la terminal de Debian y ejecuta los siguientes comandos:
+
+1.- sudo apt update
+    sudo apt upgrade
+    sudo apt install python3
+    sudo apt-get install build-essential ant graphviz python3-pip
+
+3.- sudo apt-get install python3-venv
+    python3 -m venv Enviroment
+    source Enviroment/bin/activate
+
+4.- pip install numpy networkx pulp holoviews
+
+5.- sudo apt install git
+    git --version
+
+6.- dirigirse a la carpeta donde se desea instalar LinTim, previamente vamos al repositorio de LinTim en el siguiente enlace:
+
+https://gitlab.rlp.net/lintim/OpenLinTim
+
+nos dirigimos en el repositorio a la carpeta src/installation y descargamos los scripts install.py , util.py y los colocamos en la 
+donde vamos a instalar LinTim
+
+7.- Acceder a la carpeta desde la consola y ejecutar
+    sudo python3 install.py (Debido a problemas de permisos)
+    n
+    Y
+    Y
+    Y
+    n
+    n
+
+    deactivate
+
+8.- En la carpeta donde instalamos el LinTim ejecutamos:
+     sudo chown -R usuario LinTim/
+     sudo chgrp -R usuario LinTim/
+
+9.- Se debe actualizar en LintTim/libs/jgrapht con los archivos del jgrapht.rar  
+
+################Instalacion de Gurobi###################
+Descargar Gurobi de la pagina web (gurobi10.0.2_linux64.tar.gz). 
+
+10.- Luego ejecuta los siguientes comandos:  
+     sudo mv ~/Descargas/gurobi10.0.2_linux64.tar.gz /opt/
+     cd /opt/
+     sudo tar -xvf gurobi10.0.2_linux64.tar.gz
+
+11.- Pegamos en el bashrc:
+    export GUROBI_HOME=/opt/gurobi1002/linux64
+    export CLASSPATH=${GUROBI_HOME}/lib/gurobi.jar:${CLASSPATH}
+    export LD_LIBRARY_PATH=${GUROBI_HOME}/lib/:${LD_LIBRARY_PATH}
+    export PATH=${GUROBI_HOME}/bin:${PATH}
+
+   
